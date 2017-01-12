@@ -25,7 +25,7 @@ class QQAuthController extends Controller
 
   public function index()
   {
-    return view('app');
+    return view('index-' . env('FRONT_TYPE'));
   }
 
   public function code(Request $req, QQHelper $qq)
@@ -105,7 +105,12 @@ class QQAuthController extends Controller
 
   public function qqAuthUrl(Request $req, QQHelper $qq)
   {
-    return response()->json(['data' => $qq->authUrl()]);
+    $url = $qq->authUrl();
+    if ($url === null) {
+      return response()->json([]);
+    } else {
+      return response()->json(['data' => $url]);
+    }
   }
 
   public function newQqUserOptions(Request $req, QQHelper $qq)

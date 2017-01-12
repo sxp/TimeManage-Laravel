@@ -1,4 +1,4 @@
-@extends('app')
+@extends('index-ng2')
 
 @section('content')
 <div class="container">

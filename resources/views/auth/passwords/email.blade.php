@@ -1,4 +1,4 @@
-@extends('app')
+@extends('index-ng2')
 
 <!-- Main Content -->
 @section('content')
