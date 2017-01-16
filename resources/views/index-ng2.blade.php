@@ -13,24 +13,24 @@
 
     <!-- Styles -->
     {{--<link href="/css/app.css" rel="stylesheet">--}}
-    <link href="/css/styles.bundle.css" rel="stylesheet">
+    <link href="/ng2/css/styles.bundle.css" rel="stylesheet">
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
 </head>
 
 <!-- Scripts -->
 <script>
     window.Laravel = <?php echo json_encode([
-    'csrfToken' => csrf_token(),
-  ]); ?>
+        'csrfToken' => csrf_token(),
+    ]); ?>
 </script>
 </head>
 <body>
 <app-root>正在加载...</app-root>
 
 <!-- Scripts -->
-<script src="/js/app.js"></script>
-<script type="text/javascript" src="/js/inline.bundle.js"></script>
-<script type="text/javascript" src="/js/vendor.bundle.js"></script>
-<script type="text/javascript" src="/js/main.bundle.js"></script>
+<script src="/ng2/js/app.js"></script>
+<script src="/ng2/js/inline.bundle.js"></script>
+<script src="/ng2/js/vendor.bundle.js"></script>
+<script src="/ng2/js/main.bundle.js"></script>
 </body>
 </html>

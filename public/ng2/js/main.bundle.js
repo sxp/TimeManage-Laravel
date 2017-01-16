@@ -155,7 +155,7 @@ var ActionService = (function () {
         });
     };
     ActionService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === 'function' && _a) || Object])
     ], ActionService);
     return ActionService;
@@ -248,7 +248,7 @@ var LocalActionService = (function () {
         }
     };
     LocalActionService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
         __metadata('design:paramtypes', [])
     ], LocalActionService);
     return LocalActionService;
@@ -318,7 +318,7 @@ var AuthService = (function () {
         return this.http.post(this.logoutUrl, {}).map(function (resp) { return true; });
     };
     AuthService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === 'function' && _a) || Object])
     ], AuthService);
     return AuthService;
@@ -448,7 +448,7 @@ var SessionService = (function () {
         });
     };
     SessionService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */]) === 'function' && _a) || Object])
     ], SessionService);
     return SessionService;
@@ -515,7 +515,7 @@ var ActionManagerComponent = (function () {
         });
     };
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('addCategoryConfirm'),
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('addCategoryConfirm'), 
         __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ng2_bootstrap__["ModalDirective"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2_ng2_bootstrap__["ModalDirective"]) === 'function' && _a) || Object)
     ], ActionManagerComponent.prototype, "addCategoryDialog", void 0);
     ActionManagerComponent = __decorate([
@@ -523,7 +523,7 @@ var ActionManagerComponent = (function () {
             selector: 'action-mgr',
             template: __webpack_require__(837),
             styles: [__webpack_require__(827)]
-        }),
+        }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__action_service__["a" /* ActionService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__action_service__["a" /* ActionService */]) === 'function' && _b) || Object])
     ], ActionManagerComponent);
     return ActionManagerComponent;
@@ -589,7 +589,7 @@ var AuthQqCreateComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             template: __webpack_require__(839),
             styles: [__webpack_require__(829)]
-        }),
+        }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === 'function' && _b) || Object])
     ], AuthQqCreateComponent);
     return AuthQqCreateComponent;
@@ -634,7 +634,7 @@ var HomeComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             template: __webpack_require__(841),
             styles: [__webpack_require__(831)]
-        }),
+        }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__session_service__["a" /* SessionService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__session_service__["a" /* SessionService */]) === 'function' && _a) || Object])
     ], HomeComponent);
     return HomeComponent;
@@ -702,7 +702,7 @@ var RecordService = (function () {
         configurable: true
     });
     RecordService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === 'function' && _a) || Object])
     ], RecordService);
     return RecordService;
@@ -853,11 +853,11 @@ var ActionCategoryEditorComponent = (function () {
         });
     };
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__po__["a" /* ActionCategory */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__po__["a" /* ActionCategory */]) === 'function' && _a) || Object)
     ], ActionCategoryEditorComponent.prototype, "data", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('addActionConfirm'),
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('addActionConfirm'), 
         __metadata('design:type', (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3_ng2_bootstrap__["ModalDirective"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3_ng2_bootstrap__["ModalDirective"]) === 'function' && _b) || Object)
     ], ActionCategoryEditorComponent.prototype, "addActionDialog", void 0);
     ActionCategoryEditorComponent = __decorate([
@@ -865,7 +865,7 @@ var ActionCategoryEditorComponent = (function () {
             selector: 'action-category-editor',
             template: __webpack_require__(835),
             styles: [__webpack_require__(825)]
-        }),
+        }), 
         __metadata('design:paramtypes', [(typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__action_service__["a" /* ActionService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__action_service__["a" /* ActionService */]) === 'function' && _c) || Object])
     ], ActionCategoryEditorComponent);
     return ActionCategoryEditorComponent;
@@ -962,11 +962,11 @@ var ActionEditorComponent = (function () {
         });
     };
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__po__["b" /* Action */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__po__["b" /* Action */]) === 'function' && _a) || Object)
     ], ActionEditorComponent.prototype, "data", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', Boolean)
     ], ActionEditorComponent.prototype, "parentBusy", void 0);
     ActionEditorComponent = __decorate([
@@ -974,7 +974,7 @@ var ActionEditorComponent = (function () {
             selector: '.action-editor',
             template: __webpack_require__(836),
             styles: [__webpack_require__(826)]
-        }),
+        }), 
         __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__action_service__["a" /* ActionService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__action_service__["a" /* ActionService */]) === 'function' && _b) || Object])
     ], ActionEditorComponent);
     return ActionEditorComponent;
@@ -1021,7 +1021,7 @@ var AppRoutingModule = (function () {
             imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */].forRoot(routes)],
             exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */]],
             providers: []
-        }),
+        }), 
         __metadata('design:paramtypes', [])
     ], AppRoutingModule);
     return AppRoutingModule;
@@ -1059,7 +1059,7 @@ var AppComponent = (function () {
             template: __webpack_require__(838),
             styles: [__webpack_require__(828)],
             providers: []
-        }),
+        }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
@@ -1159,7 +1159,7 @@ var AppModule = (function () {
             providers: [__WEBPACK_IMPORTED_MODULE_10__session_service__["a" /* SessionService */], __WEBPACK_IMPORTED_MODULE_9__auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_21__record_service__["a" /* RecordService */],
                 { provide: __WEBPACK_IMPORTED_MODULE_14__action_service__["a" /* ActionService */], useClass: __WEBPACK_IMPORTED_MODULE_14__action_service__["a" /* ActionService */] }],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
-        }),
+        }), 
         __metadata('design:paramtypes', [])
     ], AppModule);
     return AppModule;
@@ -1282,7 +1282,7 @@ var DashboardComponent = (function () {
             selector: 'dashboard-page',
             template: __webpack_require__(840),
             styles: [__webpack_require__(830)]
-        }),
+        }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__action_service__["a" /* ActionService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__action_service__["a" /* ActionService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__record_service__["a" /* RecordService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__record_service__["a" /* RecordService */]) === 'function' && _b) || Object])
     ], DashboardComponent);
     return DashboardComponent;
@@ -1355,7 +1355,7 @@ var LoginZoneComponent = (function () {
                     ])
                 ])
             ]
-        }),
+        }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === 'function' && _b) || Object])
     ], LoginZoneComponent);
     return LoginZoneComponent;
@@ -1404,7 +1404,7 @@ var NavComponent = (function () {
         });
     };
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', String)
     ], NavComponent.prototype, "brandName", void 0);
     NavComponent = __decorate([
@@ -1412,7 +1412,7 @@ var NavComponent = (function () {
             selector: 'app-nav',
             template: __webpack_require__(843),
             styles: [__webpack_require__(833)]
-        }),
+        }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__session_service__["a" /* SessionService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__session_service__["a" /* SessionService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2__auth_service__["a" /* AuthService */]) === 'function' && _b) || Object])
     ], NavComponent);
     return NavComponent;
@@ -1499,7 +1499,7 @@ var WelcomeComponent = (function () {
             selector: 'welcome-page',
             template: __webpack_require__(844),
             styles: [__webpack_require__(834)]
-        }),
+        }), 
         __metadata('design:paramtypes', [])
     ], WelcomeComponent);
     return WelcomeComponent;
@@ -1716,7 +1716,7 @@ module.exports = "<nav class=\"navbar navbar-default navbar-static-top\">\n  <di
 /***/ 844:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"row\" style=\"margin-top: 50px\">\n  <div class=\"col-sm-8 hidden-xs\" style='background: url(\"/images/bg.jpeg\") top right no-repeat'>\n    <dl>\n      <dt class=\"h4\">坚持记录</dt>\n      <dd>我做过什么、正在做什么</dd>\n    </dl>\n    <dl>\n      <dt class=\"h4\">计划将来</dt>\n      <dd>我准备什么、将来会发生什么</dd>\n    </dl>\n    <dl>\n      <dt class=\"h4\">统计分析</dt>\n      <dd>你花了多少时间做某事、我的时间都浪费在哪里</dd>\n    </dl>\n    <dl>\n      <dt class=\"h4\">管理优化</dt>\n      <dd>减少时间的浪费、提高效率、更好的利用时间</dd>\n    </dl>\n  </div>\n\n  <div class=\"col-sm-4\" style=\"border: 3px solid #e9e8e6;box-shadow:2px 2px 3px #aaaaaa;\">\n    <login-zone></login-zone>\n  </div>\n</div>\n"
+module.exports = "<div class=\"row\" style=\"margin-top: 50px\">\n  <div class=\"col-sm-8 hidden-xs\" style='background: url(\"/ng2/images/bg.jpeg\") top right no-repeat'>\n    <dl>\n      <dt class=\"h4\">坚持记录</dt>\n      <dd>我做过什么、正在做什么</dd>\n    </dl>\n    <dl>\n      <dt class=\"h4\">计划将来</dt>\n      <dd>我准备什么、将来会发生什么</dd>\n    </dl>\n    <dl>\n      <dt class=\"h4\">统计分析</dt>\n      <dd>你花了多少时间做某事、我的时间都浪费在哪里</dd>\n    </dl>\n    <dl>\n      <dt class=\"h4\">管理优化</dt>\n      <dd>减少时间的浪费、提高效率、更好的利用时间</dd>\n    </dl>\n  </div>\n\n  <div class=\"col-sm-4\" style=\"border: 3px solid #e9e8e6;box-shadow:2px 2px 3px #aaaaaa;\">\n    <login-zone></login-zone>\n  </div>\n</div>\n"
 
 /***/ }
 
