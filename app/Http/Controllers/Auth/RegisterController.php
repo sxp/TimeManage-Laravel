@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -20,7 +21,9 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsers {
+        register as oRegister;
+    }
 
     /**
      * Where to redirect users after registration.
@@ -28,6 +31,12 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+
+    private $rules = [
+        'name' => 'required|max:12|min:3',
+        'email' => 'required|email|max:255|unique:users',
+        'password' => 'required|min:6|confirmed',
+    ];
 
     /**
      * Create a new controller instance.
@@ -42,22 +51,24 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:12',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
+        return Validator::make($data, $this->rules);
+    }
+
+    public function register(Request $request)
+    {
+        $this->validate($request, $this->rules);
+        return $this->oRegister($request);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
@@ -67,5 +78,10 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        return response()->json(['res' => 0]);
     }
 }

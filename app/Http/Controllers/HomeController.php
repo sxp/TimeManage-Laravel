@@ -24,7 +24,7 @@ class HomeController extends Controller
    */
   public function index()
   {
-    return view('index-' . env('FRONT_TYPE'));
+    return view('index-' . env('FRONT_TYPE', 'ng2'));
   }
 
   public function accountInfo()
@@ -33,8 +33,10 @@ class HomeController extends Controller
       $data = [];
       $user = \Auth::user();
       $qqUser = \Session::get('qqUser');
-      $data['qqNick'] = $qqUser->nickname;
-      $data['avatarUrl'] = $qqUser->figureurl_qq_1;
+      if ($qqUser != null) {
+        $data['qqNick'] = $qqUser->nickname;
+        $data['avatarUrl'] = $qqUser->figureurl_qq_1;
+      }
       $data['name'] = $user->name;
       return response()->json(['res' => 'logon', 'account' => $data]);
     } else {

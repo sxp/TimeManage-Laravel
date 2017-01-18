@@ -11,9 +11,14 @@ use Illuminate\Support\Facades\Validator;
 
 class QQAuthController extends Controller
 {
-  use RegistersUsers;
+  use RegistersUsers {
+    register as oRegister;
+  }
 
   protected $redirectTo = '/';
+  private $rules = [
+    'name' => 'required|max:12|min:3',
+  ];
 
   /**
    * QQAuthController constructor.
@@ -25,7 +30,7 @@ class QQAuthController extends Controller
 
   public function index()
   {
-    return view('index-' . env('FRONT_TYPE'));
+    return view('index-' . env('FRONT_TYPE', 'ng2'));
   }
 
   public function code(Request $req, QQHelper $qq)
@@ -61,13 +66,13 @@ class QQAuthController extends Controller
   public function qqUserInfo(Request $req, QQHelper $qq)
   {
     if (!\Session::has('qqUser')) {
-      return redirect('/');
+      return response()->json(['res' => -1]);
     }
     $data = [];
     $user = \Session::get('qqUser');
     $data['qqNick'] = $user->nickname;
     $data['avatarUrl'] = $user->figureurl_qq_1;
-    return response()->json(['data' => $data]);
+    return response()->json(['data' => $data, 'res' => 0]);
   }
 
   public function showCreateForm(Request $req, QQHelper $qq)
@@ -80,9 +85,7 @@ class QQAuthController extends Controller
 
   protected function validator(array $data)
   {
-    return Validator::make($data, [
-      'name' => 'required|max:255',
-    ]);
+    return Validator::make($data, $this->rules);
   }
 
   protected function create(array $data)
@@ -123,16 +126,14 @@ class QQAuthController extends Controller
     ]);
   }
 
-  public function newQqUserPost(Request $req, QQHelper $qq)
+  public function register(Request $request)
   {
-    return response()->json(['data' => 'test']);
+    $this->validate($request, $this->rules);
+    return $this->oRegister($request);
   }
 
   protected function registered(Request $request, $user)
   {
-    if ($request->isJson()) {
-      return response()->json(['res' => 'ok']);
-    }
-    return false;
+    return response()->json(['res' => 0]);
   }
 }
