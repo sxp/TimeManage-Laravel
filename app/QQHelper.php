@@ -27,7 +27,7 @@ class QQHelper
 
   public function authUrl()
   {
-    if ($this->appId === null) {
+    if (!$this->appId) {
       return null;
     } else {
       $loginUrl = urlencode($this->appUrl . "/auth/qq");

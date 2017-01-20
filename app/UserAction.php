@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Mockery\CountValidator\Exception;
 
 /**
@@ -54,6 +55,7 @@ class UserAction extends Model
    */
   public static function getMyAction($uid)
   {
+    $uid = intval($uid);
     $a = self::prepareTree($uid);
     return array_reduce($a, function ($ret, $i) {
       return array_merge($ret, $i['children']);
@@ -307,6 +309,7 @@ class UserAction extends Model
                 $n->tpe = static::TPE_CATEGORY;
                 $n->created_at = new Carbon();
                 $d = $n;
+                $needUpdateOld = true;
               }
             }
           } else if ($d->tpe == static::TPE_OVERWRITE_DEFAULT) {
@@ -324,12 +327,32 @@ class UserAction extends Model
               $n->tpe = static::TPE_OVERWRITE_DEFAULT;
               $n->created_at = new Carbon();
               $d = $n;
+              $needUpdateOld = true;
             }
           }
           if (!$d->save()) throw new Exception('更新数据失败，请重试');
           $newId = intval($d->id);
-          if ($changeOld && $needUpdateOld) {
-            // 更新之前的记录的动作引用
+          if ($needUpdateOld) {
+            $res = false;
+            if ($changeOld) {
+              // 更新之前的记录的动作引用
+              $res = UserRecord::whereAction($id)->whereUserId($uid)->update(['action' => $newId]);
+            } else {
+              // 如果当前正在做的就是我们需要重命名的动作，则更新他
+              $res = UserRecord::whereUserId($uid)->orderBy('start_at', 'desc')->take(1)->get();
+              if ($res->isEmpty()) {
+                $res = true;
+              } else {
+                $res = $res->first();
+                /** @var UserRecord $res */
+                if ($res->action == $id) {
+                  $res = UserRecord::whereId($res->id)->update(['action' => $newId]);
+                } else {
+                  $res = true;
+                }
+              }
+            }
+            if (!$res) throw new Exception('更新数据失败，请重试');
           }
           return $newId;
         });
@@ -339,9 +362,9 @@ class UserAction extends Model
     }
   }
 
-  private static function prepareTree($id)
+  private static function prepareTree($uid)
   {
-    $a = UserAction::whereIn('user_id', [$id, 0])->get();
+    $a = UserAction::whereIn('user_id', [$uid, 0])->get();
     $ret = [];
     $map = [];
     foreach ($a as $c) {
@@ -380,13 +403,20 @@ class UserAction extends Model
           break;
       }
     }
+    $aMap = [];
     foreach ($map as $id => $item) {
       if ($item->parent != null && isset($ret[$item->parent])) {
         $c = &$ret[$item->parent];
         $tmp = ['id' => $id];
         $tmp['name'] = $item->name;
         $c['children'][] = $tmp;
+        $aMap[$id] = &$c['children'][sizeof($c['children'])-1];
       }
+    }
+    $res = UserRecord::whereUserId($uid)->whereIn('action', array_keys($aMap))->select(DB::raw('count(*) as ac, action'))->groupBy(['action'])->get();
+    foreach ($res as $r) {
+      $d = &$aMap[$r->action];
+      $d['recordNum'] = $r->ac;
     }
     return $ret;
   }
