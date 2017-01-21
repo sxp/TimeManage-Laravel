@@ -106,16 +106,6 @@ class QQAuthController extends Controller
     return file_get_contents($url, false, stream_context_create(['ssl' => ['verify_peer' => false, 'verify_name' => false]]));
   }
 
-  public function qqAuthUrl(Request $req, QQHelper $qq)
-  {
-    $url = $qq->authUrl();
-    if ($url === null) {
-      return response()->json([]);
-    } else {
-      return response()->json(['data' => $url]);
-    }
-  }
-
   public function newQqUserOptions(Request $req, QQHelper $qq)
   {
     return response('', 200, [

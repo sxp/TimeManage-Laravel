@@ -32,38 +32,48 @@ class UserRecord extends Model
 
   /**
    * @param $uid
-   * @param $id
+   * @param $action
    * @param int $protectSec
    * @return mixed
    */
-  public static function changeCurrent($uid, $id, $protectSec = 60)
+  public static function changeCurrent($uid, $action, $protectSec = 60)
   {
-    $id = intval($id);
-    $res = UserRecord::whereUserId($uid)->orderBy('start_at', 'desc')->take(1)->get();
+    $action = intval($action);
+    $res = UserRecord::whereUserId($uid)->orderBy('start_at', 'desc')->take(2)->get();
     $now = new Carbon();
     if (!$res->isEmpty()) {
       /** @var UserRecord $latest */
       $latest = $res->first();
       $sec = $latest->start_at->diffInSeconds($now);
       if ($sec < $protectSec) {
-        $latest->action = $id;
+        if ($res->count() > 1) {
+          // 检查改变之前的已生效动作和现在要做的是否一样，如果是一样，则恢复用户之前做的事情，删除这条记录
+          $before = $res->last();
+          /** @var UserRecord $before */
+          if ($before->action == $action) {
+            UserRecord::destroy($latest->id);
+            return ['actionId' => $action, 'startAt' => $before->start_at->timestamp, 'id' => $before->id];
+          }
+        }
+        $latest->action = $action;
         $latest->update_count++;
         $latest->save();
-        return ['id' => $id, 'startAt' => $latest->start_at->timestamp];
+        return ['actionId' => $action, 'startAt' => $latest->start_at->timestamp, 'id' => $latest->id];
       }
     }
     $row = new UserRecord();
     $row->user_id = $uid;
-    $row->action = $id;
+    $row->action = $action;
     $row->start_at = $now;
     $row->created_at = $now;
     $row->update_count = 0;
     $row->save();
-    return ['id' => $id, 'startAt' => $now->timestamp];
+    return ['actionId' => $action, 'startAt' => $now->timestamp, 'id' => $row->id];
   }
 
   public static function current($uid)
   {
+    $uid = intval($uid);
     $res = UserRecord::whereUserId($uid)->orderBy('start_at', 'desc')->take(1)->get();
     if ($res->isEmpty()) {
       return null;
@@ -71,9 +81,43 @@ class UserRecord extends Model
       $res = $res->first();
       /** @var UserRecord $res */
       $ret = [];
-      $ret['id'] = $res->action;
+      $ret['id'] = $res->id;
+      $ret['actionId'] = $res->action;
       $ret['startAt'] = $res->start_at->timestamp;
       return $ret;
     }
+  }
+
+  public static function history($uid, $num, $max = 20)
+  {
+    $uid = intval($uid);
+    $num = min(abs(intval($num)), $max);
+    $res = UserRecord::whereUserId($uid)->orderBy('start_at', 'desc')->take($num)->get();
+    $ret = [];
+    $acts = [];
+    foreach ($res as $r) {
+      /** @var UserRecord $r */
+      $tmp = [];
+      $tmp['id'] = $r->id;
+      $tmp['actionId'] = $r->action;
+      $acts[] = $r->action;
+      $tmp['startAt'] = $r->start_at->timestamp;
+      $ret[] = $tmp;
+    }
+    $acts = array_unique($acts);
+    $res = UserAction::whereIn('id', $acts)->get(['id', 'name']);
+    $acts = [];
+    foreach ($res as $r) {
+      $acts[$r->id] = $r->name;
+    }
+    $lastTime = -1;
+    foreach ($ret as &$r) {
+      $r['name'] = $acts["{$r['actionId']}"];
+      if ($lastTime != -1) {
+        $r['due'] = $lastTime - $r['startAt'];
+      }
+      $lastTime = $r['startAt'];
+    }
+    return $ret;
   }
 }

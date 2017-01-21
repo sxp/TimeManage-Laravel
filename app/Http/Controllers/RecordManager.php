@@ -33,4 +33,11 @@ class RecordManager extends Controller
       return response()->json([$ret]);
     }
   }
+
+  public function history($num = 10, Request $req)
+  {
+    $num = intval($num);
+    $ret = UserRecord::history(\Auth::id(), $num);
+    return response()->json(['res' => 0, 'data' => $ret]);
+  }
 }

@@ -20,7 +20,7 @@ Route::get('/json/accountInfo', 'HomeController@accountInfo');
 //Route::options('/jsonp/newQqUser', 'QQAuthController@newQqUserOptions');
 //Route::get('/auth/qq/create', 'QQAuthController@showCreateForm');
 Route::get('/auth/qq', 'QQAuthController@code');
-Route::get('/auth/qq/url', 'QQAuthController@qqAuthUrl');
+Route::get('/auth/qq/url', 'HomeController@qqAuthUrl');
 Route::get('/auth/qq/info', 'QQAuthController@qqUserInfo');
 Route::get('/auth/qq/create', 'QQAuthController@index');
 Route::post('/auth/qq/create', 'QQAuthController@register');
@@ -36,6 +36,7 @@ Route::post('/json/deleteAction', 'ActionManager@deleteAction');
 
 Route::post('/json/do', 'RecordManager@changeCurrent');
 Route::get('/json/current', 'RecordManager@current');
+Route::get('/json/recordHistory/{num?}', 'RecordManager@history')->where('num', '\d+');
 
 // Authentication Routes...
 Route::post('login', 'Auth\LoginController@login');

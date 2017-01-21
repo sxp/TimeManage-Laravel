@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\QQHelper;
 use App\UserAction;
 use Illuminate\Http\Request;
 
@@ -43,4 +44,15 @@ class HomeController extends Controller
       return response()->json(['res' => 'guest']);
     }
   }
+
+  public function qqAuthUrl(Request $req, QQHelper $qq)
+  {
+    $url = $qq->authUrl();
+    if ($url === null) {
+      return response()->json([]);
+    } else {
+      return response()->json(['data' => $url]);
+    }
+  }
+
 }
